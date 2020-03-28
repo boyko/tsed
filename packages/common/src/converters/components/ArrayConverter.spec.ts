@@ -18,7 +18,6 @@ describe("ArrayConverter", () => {
 
   describe("deserialize()", () => {
     const deserializer = Sinon.stub();
-
     it("should deserialize data as array when a number is given", () => {
       expect(arrayConverter.deserialize(1, Array, Number, deserializer)).to.be.an("array");
     });
