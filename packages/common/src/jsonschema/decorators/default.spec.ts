@@ -23,4 +23,28 @@ describe("Default", () => {
       expect(schema.default).to.eq(false);
     });
   });
+
+  describe("value (null)", () => {
+    it("should store data", () => {
+      Default(null)(Test, "property");
+      const schema = PropertyRegistry.get(Test, "property").schema;
+      expect(schema.default).to.eq(null);
+    });
+  });
+
+  describe("value (array)", () => {
+    it("should store data", () => {
+      Default([1, 2, 3])(Test, "property");
+      const schema = PropertyRegistry.get(Test, "property").schema;
+      expect(schema.default).to.deep.eq([1, 2, 3]);
+    });
+  });
+
+  describe("value (object)", () => {
+    it("should store data", () => {
+      Default({some: "prop"})(Test, "property");
+      const schema = PropertyRegistry.get(Test, "property").schema;
+      expect(schema.default).to.deep.eq({some: "prop"});
+    });
+  });
 });

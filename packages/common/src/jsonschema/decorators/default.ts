@@ -1,4 +1,4 @@
-import {Schema} from "./schema";
+import {decoratorSchemaFactory} from "../utils/decoratorSchemaFactory";
 
 /**
  * There are no restrictions placed on the value of this keyword.
@@ -36,6 +36,8 @@ import {Schema} from "./schema";
  * @property
  * @jsonschema
  */
-export function Default(defaultValue: string | number | boolean | {}) {
-  return Schema({default: defaultValue});
+export function Default(defaultValue: string | number | boolean | null | [] | {}) {
+  return decoratorSchemaFactory(schema => {
+    schema.mapper.default = defaultValue;
+  });
 }
